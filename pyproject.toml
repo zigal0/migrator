@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "migrator"
+version = "0.1.0"
+description = "Tool for db migrations."
+authors = ["zigal0 <zigal0.bc@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
