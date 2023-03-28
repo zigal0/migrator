@@ -16,7 +16,7 @@ def create_repository() -> SQLiteMetaRepository:
     return SQLiteMetaRepository(con)
 
 
-def test_main_flow(create_repository) -> None:
+def test_success_main_flow(create_repository) -> None:
     repository = create_repository
 
     repository.create_version_table()
@@ -30,3 +30,11 @@ def test_main_flow(create_repository) -> None:
     version_ids = repository.get_ordered_migration_ids()
 
     assert version_ids == [1, 3]
+
+
+def test_fail_create_2nd_table(create_repository) -> None:
+    repository = create_repository
+
+    repository.create_version_table()
+    with pytest.raises(sqlite3.OperationalError):
+        repository.create_version_table()
