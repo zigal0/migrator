@@ -1,3 +1,9 @@
+# Migrator
+# example: make create-migration name=smth
+.PHONY: create-migration
+create-migration:
+	poetry run python migrator/cmd/main.py create $(name)
+
 # SETUP
 .PHONY: setup
 setup:

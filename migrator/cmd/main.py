@@ -5,10 +5,10 @@ Main Script (need to add functional).
 import sys
 from datetime import datetime
 
-FILE_CONTENT = """-- +goose Up
+FILE_CONTENT = """-- migrator up
 -- SQL in this section is executed when the migration is applied.
 
--- +goose Down
+-- migrator down
 -- SQL in this section is executed when the migration is rolled back.
 """
 

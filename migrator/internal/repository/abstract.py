@@ -14,12 +14,24 @@ class AbstractMetaRepository(ABC):
 
     @abstractmethod
     def insert_version(self, version_id: int) -> None:
-        """ Inserts new migration to table. """
+        """
+        Inserts new migration to table.
+        Args:
+             version_id: id of migration version.
+        """
 
     @abstractmethod
     def delete_version(self, version_id: int) -> None:
-        """ Deletes migration from table. """
+        """
+        Deletes migration from table.
+        Args:
+             version_id: id of migration version.
+        """
 
     @abstractmethod
     def get_ordered_migration_ids(self) -> list[int]:
-        """ Returns migration ids ordered by applied_at. """
+        """
+        Returns migration ids ordered by applied_at.
+        Returns:
+             List of applied migration ids.
+        """

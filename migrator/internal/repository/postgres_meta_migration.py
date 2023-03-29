@@ -10,18 +10,18 @@ CREATE_META_MIGRATION_TABLE = """CREATE TABLE meta_migration (
     version_id BIGINT,
     applied_at TIMESTAMP NOT NULL DEFAULT NOW(),
     PRIMARY KEY(version_id)
-);"""
+)"""
 
 INSERT_META_MIGRATION_TABLE = """
-INSERT INTO meta_migration (version_id) VALUES (%s);
+INSERT INTO meta_migration (version_id) VALUES (%s)
 """
 
 DELETE_META_MIGRATION_TABLE = """
-DELETE FROM meta_migration WHERE version_id = %s;
+DELETE FROM meta_migration WHERE version_id = %s
 """
 
 GET_ORDERED_MIGRATION_IDS = """
-SELECT version_id FROM meta_migration ORDER BY applied_at;
+SELECT version_id FROM meta_migration ORDER BY applied_at
 """
 
 

@@ -3,15 +3,9 @@ import sqlite3
 from migrator.internal.repository.sqlite_meta_migration import SQLiteMetaRepository
 
 
-TEST_TABLE_DROP = "DROP TABLE IF EXISTS meta_migration;"
-
-
 @pytest.fixture
 def create_repository() -> SQLiteMetaRepository:
     con = sqlite3.connect(':memory:')
-    with con:
-        cur = con.cursor()
-        cur.execute(TEST_TABLE_DROP)
 
     return SQLiteMetaRepository(con)
 
