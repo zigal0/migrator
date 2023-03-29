@@ -11,19 +11,19 @@ CREATE TABLE meta_migration (
     version_id INTEGER,
     applied_at TIMESTAMP DEFAULT (DATETIME('now')),
     PRIMARY KEY(version_id)
-);
+)
 """
 
 INSERT_META_MIGRATION_TABLE = """
-INSERT INTO meta_migration (version_id) VALUES (?);
+INSERT INTO meta_migration (version_id) VALUES (?)
 """
 
 DELETE_META_MIGRATION_TABLE = """
-DELETE FROM meta_migration WHERE version_id = ?;
+DELETE FROM meta_migration WHERE version_id = ?
 """
 
 GET_ORDERED_MIGRATION_IDS = """
-SELECT version_id FROM meta_migration ORDER BY applied_at;
+SELECT version_id FROM meta_migration ORDER BY applied_at
 """
 
 
