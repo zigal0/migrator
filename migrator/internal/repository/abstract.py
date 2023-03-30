@@ -5,28 +5,14 @@ Module contains abstract repositories for database.
 from abc import ABC, abstractmethod
 
 
-class AbstractMetaRepository(ABC):
-    """ Abstract repository for migration meta info tables. """
+class AbstractRepository(ABC):
+    """
+    Abstract repository for migration meta info tables and executing queries.
+    """
 
     @abstractmethod
     def create_version_table(self) -> None:
         """ Creates new meta table. """
-
-    @abstractmethod
-    def insert_version(self, version_id: int) -> None:
-        """
-        Inserts new migration to table.
-        Args:
-             version_id: id of migration version.
-        """
-
-    @abstractmethod
-    def delete_version(self, version_id: int) -> None:
-        """
-        Deletes migration from table.
-        Args:
-             version_id: id of migration version.
-        """
 
     @abstractmethod
     def get_ordered_migration_ids(self) -> list[int]:
@@ -35,3 +21,12 @@ class AbstractMetaRepository(ABC):
         Returns:
              List of applied migration ids.
         """
+
+    @abstractmethod
+    def apply_migration(
+            self,
+            version_id: int,
+            queries: list[str],
+            mode: bool,
+    ) -> None:
+        """ Executes given query. """
