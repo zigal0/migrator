@@ -5,5 +5,5 @@
 ## Checklist before requesting a review
 - [ ] Tests for new functional.
 - [ ] Docs for new functional.
-- [ ] Linter passes.
+- [ ] Linters pass.
 

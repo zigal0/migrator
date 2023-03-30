@@ -65,7 +65,10 @@ if __name__ == '__main__':
 
             sys.exit()
 
-        create_migration_file(sys.argv[2], sys.argv[3])
+        create_migration_file(
+            '/'.join([cfg.MIGRATION_PATH, sys.argv[2]]),
+            sys.argv[3]
+        )
 
     if CMD == 'migrate':
         if len(sys.argv) < 3 and sys.argv[2] not in ['up', 'down']:

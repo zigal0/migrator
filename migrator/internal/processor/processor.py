@@ -53,6 +53,8 @@ class Processor:
     def migrate_up(self) -> None:
         """ Runs all sql scripts in up mode. """
         for db_name, repo in self.repos.items():
+            log_info_msg(f'Migrations for {db_name} started applying.')
+
             repo.create_version_table()
             applied_version_ids = repo.get_ordered_migration_ids()
 
@@ -70,7 +72,7 @@ class Processor:
                 try:
                     version_id = int(file_name_parts[0])
                 except ValueError:
-                    log_fail_msg('Incorrect migration name.')
+                    log_fail_msg(f'Incorrect migration name: {migration_file}')
 
                     continue  # zigal0TODO
 
@@ -86,14 +88,13 @@ class Processor:
                 sql_queries = self.parser.get_migrations_up(sql_script)
 
                 repo.apply_migration(version_id, sql_queries, True)
-
-                log_info_msg(f'Migration {migration_file} applied')
-
-            log_success_msg(f'Migration for {db_name} applied')
+                log_success_msg(f'Migration {migration_file} applied.')
 
     def migrate_down(self) -> None:
         """ Runs all sql scripts in down mode. """
         for db_name, repo in self.repos.items():
+            log_info_msg(f'Migrations for {db_name} started applying.')
+
             repo.create_version_table()
             applied_version_ids = repo.get_ordered_migration_ids()
 
@@ -115,7 +116,7 @@ class Processor:
                 try:
                     version_id = int(file_name_parts[0])
                 except ValueError:
-                    log_fail_msg('Incorrect migration name.')
+                    log_fail_msg(f'Incorrect migration name: {migration_file}')
 
                     continue  # zigal0TODO
 
@@ -131,7 +132,4 @@ class Processor:
                 sql_queries = self.parser.get_migrations_down(sql_script)
 
                 repo.apply_migration(version_id, sql_queries, False)
-
-                log_info_msg(f'Migration {migration_file} applied')
-
-            log_success_msg(f'Migration for {db_name} applied')
+                log_success_msg(f'Migration {migration_file} applied.')
