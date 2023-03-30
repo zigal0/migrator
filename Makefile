@@ -1,8 +1,8 @@
 # Migrator
-# example: make create-migration name=smth
+# example: make create-migration db_name=postgres migration_name=init
 .PHONY: create-migration
 create-migration:
-	poetry run python migrator/main.py create $(name)
+	poetry run python migrator/main.py create $(db_name) $(migration_name)
 
 .PHONY: migrate-up
 migrate-up:

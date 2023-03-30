@@ -17,11 +17,3 @@
 #     version_ids = repository.get_ordered_migration_ids()
 #
 #     assert version_ids == [1, 3]
-#
-#
-# def test_fail_create_2nd_table(postgresql) -> None:
-#     repository = PostgresRepository(postgresql)
-#
-#     repository.create_version_table()
-#     with pytest.raises(psycopg.errors.DuplicateTable):
-#         repository.create_version_table()
