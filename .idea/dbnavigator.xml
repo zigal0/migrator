@@ -12,8 +12,8 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="898c389f-8646-484b-9a5d-61e32a3b17bb">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+    <connection id="847e9928-fe65-4d99-9c8a-88e3327d72f3">
+      <console name="Connection" type="STANDARD" schema="test-db" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -23,7 +23,10 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="898c389f-8646-484b-9a5d-61e32a3b17bb" dataset="main.meta_migration" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="847e9928-fe65-4d99-9c8a-88e3327d72f3" dataset="public.budget" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="847e9928-fe65-4d99-9c8a-88e3327d72f3" dataset="public.expense" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="847e9928-fe65-4d99-9c8a-88e3327d72f3" dataset="public.category" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="847e9928-fe65-4d99-9c8a-88e3327d72f3" dataset="public.meta_migration" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -42,25 +45,22 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="898c389f-8646-484b-9a5d-61e32a3b17bb" active="true" signed="true">
+      <connection id="847e9928-fe65-4d99-9c8a-88e3327d72f3" active="true" signed="true">
         <database>
           <name value="Connection" />
           <description value="" />
-          <database-type value="SQLITE" />
+          <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="3.39" />
+          <database-version value="15.2" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
-          <url-type value="FILE" />
-          <host value="" />
-          <port value="" />
-          <database value="" />
-          <files>
-            <file path="$PROJECT_DIR$/experiments/test.db" schema="main" />
-          </files>
-          <type value="NONE" />
-          <user value="" />
+          <url-type value="DATABASE" />
+          <host value="localhost" />
+          <port value="5432" />
+          <database value="test-db" />
+          <type value="USER_PASSWORD" />
+          <user value="test-db-user" />
           <deprecated-pwd value="" />
         </database>
         <properties>
@@ -523,5 +523,8 @@
         </visibility-settings>
       </environment>
     </general-settings>
+  </component>
+  <component name="DBNavigator.Project.StatementExecutionManager">
+    <execution-variables />
   </component>
 </project>

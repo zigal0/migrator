@@ -2,7 +2,15 @@
 # example: make create-migration name=smth
 .PHONY: create-migration
 create-migration:
-	poetry run python migrator/cmd/main.py create $(name)
+	poetry run python migrator/main.py create $(name)
+
+.PHONY: migrate-up
+migrate-up:
+	poetry run python migrator/main.py migrate up
+
+.PHONY: migrate-down
+migrate-down:
+	poetry run python migrator/main.py migrate down
 
 # SETUP
 .PHONY: setup
@@ -24,5 +32,19 @@ test:
 check:
 	make test
 	make lint
+
+# DOCKER
+.PHONY: compose-up
+compose-up:
+	docker compose up -d
+
+.PHONY: compose-down
+compose-down:
+	docker compose down
+
+.PHONY: compose-rs
+compose-rs:
+	make compose-down
+	make compose-up
 
 
