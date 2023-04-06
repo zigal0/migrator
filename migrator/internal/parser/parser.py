@@ -35,7 +35,6 @@ class Parser:
         Raises:
             ValidationError: if structure of sql script is incorrect.
         """
-
         return self._parse_by_mode(script, True)
 
     def get_migrations_down(self, script: str) -> list[str]:
@@ -48,7 +47,6 @@ class Parser:
         Raises:
             ValidationError: if structure of sql script is incorrect.
         """
-
         return self._parse_by_mode(script, False)
 
     def _parse_by_mode(self, script: str, mode: bool) -> list[str]:
@@ -62,22 +60,27 @@ class Parser:
         Raises:
             ValidationError: if structure of sql script is incorrect.
         """
+        if 'meta_migration' in script:
+            raise exceptions.MetaMigrationChangeError(
+                exceptions.META_MIGRATION_MSG
+            )
+
         if len(self._re_up.findall(script)) != 1:
             up_blocks_number = len(self._re_up.findall(script))
             raise exceptions.ValidationError(
-                exceptions.INCORRECT_BLOCKS % ('up', up_blocks_number)
+                exceptions.INCORRECT_BLOCKS_MSG % ('up', up_blocks_number)
             )
 
         if len(self._re_down.findall(script)) != 1:
             down_blocks_number = len(self._re_down.findall(script))
             raise exceptions.ValidationError(
-                exceptions.INCORRECT_BLOCKS % ('down', down_blocks_number)
+                exceptions.INCORRECT_BLOCKS_MSG % ('down', down_blocks_number)
             )
 
         match_res = self._template_re.match(script)
         if match_res is None:
             raise exceptions.ValidationError(
-                exceptions.INCORRECT_STRUCTURE
+                exceptions.INCORRECT_STRUCTURE_MSG
             )
 
         parts = match_res.groups()
