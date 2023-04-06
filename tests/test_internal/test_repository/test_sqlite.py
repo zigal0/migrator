@@ -1,15 +1,8 @@
 import pytest
 import sqlite3
 from migrator.internal.repository.sqlite import SQLiteRepository
+from tests.test_internal.test_repository import common
 
-SQL_QUERIES_UP = [
-    'CREATE TABLE test (id INTEGER);',
-    'INSERT INTO test (id) VALUES (2);'
-]
-
-SQL_QUERIES_DOWN = [
-    'DROP TABLE test;',
-]
 
 @pytest.fixture
 def create_repository() -> SQLiteRepository:
@@ -25,7 +18,7 @@ def test_success_main_flow(create_repository) -> None:
 
     repository.apply_migration(
         version_id=1,
-        queries=SQL_QUERIES_UP,
+        queries=common.SQL_QUERIES_UP,
         mode=True,
     )
 
@@ -35,7 +28,7 @@ def test_success_main_flow(create_repository) -> None:
 
     repository.apply_migration(
         version_id=1,
-        queries=SQL_QUERIES_DOWN,
+        queries=common.SQL_QUERIES_DOWN,
         mode=False,
     )
 
